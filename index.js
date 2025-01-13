@@ -1,7 +1,8 @@
 import React from 'react';
 import { View } from 'react-native';
 import { WebView } from 'react-native-webview';
-
+import AutoHeightWebView from 'react-native-autoheight-webview'
+import { widthPercentageToDP } from 'react-native-responsive-screen';
 const defaultOptions = {
 	messageStyle: 'none',
 	extensions: ['tex2jax.js'],
@@ -60,8 +61,9 @@ class MathJax extends React.Component {
 		const props = Object.assign({}, this.props, { html: undefined });
 
 		return (
-			<View style={{ height: this.state.height, ...props.style }}>
-				<WebView
+			<View style={{...props.style}}>
+				<AutoHeightWebView
+					style={{...props.webViewStyle}}
 					scrollEnabled={false}
 					onMessage={this.handleMessage.bind(this)}
 					source={{ html }}
